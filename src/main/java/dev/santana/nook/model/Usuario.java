@@ -13,8 +13,9 @@ public class Usuario {
 
     private String nome;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     private List<Reserva> reservas;
 }

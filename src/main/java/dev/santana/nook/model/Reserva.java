@@ -19,8 +19,10 @@ public class Reserva {
     @JoinColumn(nullable = false)
     private Usuario usuario;
 
+    @Column(nullable = false)
     private LocalDateTime inicio;
 
+    @Column(nullable = false)
     private LocalDateTime fim;
 
     @Enumerated(EnumType.STRING)
