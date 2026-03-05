@@ -6,12 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public record ReservaDto(
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         Long salaId,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         Long usuarioId,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         LocalDateTime dataInicio,
-        @NotNull
+        @NotNull(message = "Campo obrigatório")
         LocalDateTime dataFim) {
 }
