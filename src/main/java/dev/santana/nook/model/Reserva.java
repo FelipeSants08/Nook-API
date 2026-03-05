@@ -1,10 +1,13 @@
 package dev.santana.nook.model;
 
+import dev.santana.nook.dto.ReservaDto;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 public class Reserva {
 
     @Id
@@ -15,7 +18,7 @@ public class Reserva {
     @JoinColumn(nullable = false)
     private Sala sala;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     private Usuario usuario;
 
@@ -27,4 +30,20 @@ public class Reserva {
 
     @Enumerated(EnumType.STRING)
     private StatusReserva status;
+
+    public Reserva(){
+    }
+
+    public Reserva(Sala sala, Usuario usuario, ReservaDto dto){
+
+        this.sala = sala;
+        this.usuario = usuario;
+        this.inicio = dto.dataInicio();
+        this.fim = dto.dataFim();
+        this.status = StatusReserva.ATIVA;
+    }
+
+    public Boolean dataCorreta(LocalDateTime dataInicio, LocalDateTime dataFim){
+        return dataInicio.isBefore(dataFim);
+    }
 }
