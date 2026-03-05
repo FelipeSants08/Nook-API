@@ -1,6 +1,7 @@
 package dev.santana.nook.service;
 
 import dev.santana.nook.dto.UsuarioDto;
+import dev.santana.nook.dto.UsuarioResponse;
 import dev.santana.nook.model.Usuario;
 import dev.santana.nook.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -27,14 +28,22 @@ public class UsuarioService {
         repository.delete(usuario);
     }
 
-    public List<Usuario> listarUsuarios(){
-        return repository.findAll();
+    public List<UsuarioResponse> listarUsuarios(){
+        return repository.findAll()
+                .stream()
+                .map(UsuarioResponse::new)
+                .toList();
     }
 
     @Transactional
     public void atualizarUsuario(Long id, UsuarioDto dto){
         Usuario usuario = pegarPorId(id);
         usuario.atualizarUsuario(dto);
+    }
+
+    public UsuarioResponse pegarPorIdResponse(Long id){
+        Usuario usuario = pegarPorId(id);
+        return new UsuarioResponse(usuario);
     }
 
     public Usuario pegarPorId(Long id){

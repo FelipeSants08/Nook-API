@@ -1,6 +1,7 @@
 package dev.santana.nook.controller;
 
 import dev.santana.nook.dto.ReservaDto;
+import dev.santana.nook.dto.ReservaResponse;
 import dev.santana.nook.model.Reserva;
 import dev.santana.nook.service.ReservaService;
 import jakarta.validation.Valid;
@@ -27,12 +28,12 @@ public class ReservaController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Reserva> listarReservas(){
+    public List<ReservaResponse> listarReservas(){
         return service.listarReservas();
     }
 
-    public Reserva pegarReserva(Long id){
-        return service.pegarReserva(id);
+    public ReservaResponse pegarReserva(Long id){
+        return service.pegarReservaResponse(id);
     }
 
     @PostMapping("/cancelar/{id}")

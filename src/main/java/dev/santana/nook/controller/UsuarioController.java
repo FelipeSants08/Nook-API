@@ -1,6 +1,7 @@
 package dev.santana.nook.controller;
 
 import dev.santana.nook.dto.UsuarioDto;
+import dev.santana.nook.dto.UsuarioResponse;
 import dev.santana.nook.model.Usuario;
 import dev.santana.nook.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -21,14 +22,14 @@ public class UsuarioController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    private List<Usuario> listar(){
+    private List<UsuarioResponse> listar(){
         return service.listarUsuarios();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Usuario pegarPorId(@RequestParam Long id){
-        return service.pegarPorId(id);
+    public UsuarioResponse pegarPorId(@RequestParam Long id){
+        return service.pegarPorIdResponse(id);
     }
 
     @PostMapping
