@@ -2,6 +2,7 @@ package dev.santana.nook.service;
 
 import dev.santana.nook.dto.UsuarioDto;
 import dev.santana.nook.dto.UsuarioResponse;
+import dev.santana.nook.exception.IdNaoEncontradoException;
 import dev.santana.nook.model.Usuario;
 import dev.santana.nook.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
@@ -50,7 +51,7 @@ public class UsuarioService {
         return repository
                 .findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException("Usuário não encontrado!")
+                        () -> new IdNaoEncontradoException("Usuário não encontrado!")
                 );
     }
 

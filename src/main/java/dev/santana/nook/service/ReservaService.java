@@ -2,6 +2,7 @@ package dev.santana.nook.service;
 
 import dev.santana.nook.dto.ReservaDto;
 import dev.santana.nook.dto.ReservaResponse;
+import dev.santana.nook.exception.IdNaoEncontradoException;
 import dev.santana.nook.model.Reserva;
 import dev.santana.nook.model.Sala;
 import dev.santana.nook.model.Usuario;
@@ -55,7 +56,7 @@ public class ReservaService {
 
     public Reserva pegarReserva(Long id){
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
+                .orElseThrow(() -> new IdNaoEncontradoException("Reserva não encontrada"));
     }
 
     public List<ReservaResponse> listarReservas(){

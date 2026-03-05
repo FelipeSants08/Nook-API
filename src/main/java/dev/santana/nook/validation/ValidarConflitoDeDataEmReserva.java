@@ -1,6 +1,7 @@
 package dev.santana.nook.validation;
 
 import dev.santana.nook.dto.ReservaDto;
+import dev.santana.nook.exception.ConflitoReservaException;
 import dev.santana.nook.repository.ReservaRepository;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ public class ValidarConflitoDeDataEmReserva implements ValidarReserva {
 
     public void validar(ReservaDto dto){
         if (repository.existeConflito(dto.salaId(), dto.dataInicio(), dto.dataFim())){
-            throw new RuntimeException("Já existe uma reserva ativa nesse horario");
+            throw new ConflitoReservaException("Já existe uma reserva ativa nesse horario");
         }
     }
 }

@@ -1,6 +1,7 @@
 package dev.santana.nook.service;
 
 import dev.santana.nook.dto.SalaDto;
+import dev.santana.nook.exception.IdNaoEncontradoException;
 import dev.santana.nook.model.Sala;
 import dev.santana.nook.repository.SalaRepository;
 import jakarta.transaction.Transactional;
@@ -34,7 +35,7 @@ public class SalaService {
     public Sala findSalaPorId(Long id){
         return repository.findById(id)
                 .orElseThrow(
-                        () -> new RuntimeException("ID não encontrado!")
+                        () -> new IdNaoEncontradoException("ID não encontrado!")
                 );
     }
 
