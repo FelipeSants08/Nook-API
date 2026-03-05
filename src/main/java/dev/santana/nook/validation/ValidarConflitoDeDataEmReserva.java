@@ -15,7 +15,7 @@ public class ValidarConflitoDeDataEmReserva implements ValidarReserva {
 
     public void validar(ReservaDto dto){
         if (repository.existeConflito(dto.salaId(), dto.dataInicio(), dto.dataFim())){
-            throw new RuntimeException("Já existe uma reserva nesse horario");
+            throw new RuntimeException("Já existe uma reserva ativa nesse horario");
         }
     }
 }

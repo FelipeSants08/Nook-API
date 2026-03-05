@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reserva")
+@RequestMapping("/api/v1/reserva")
 public class ReservaController {
 
     private final ReservaService service;
@@ -19,7 +19,7 @@ public class ReservaController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/criar")
     @ResponseStatus(HttpStatus.CREATED)
     public void criarReserva(@RequestBody @Valid ReservaDto dto){
         service.criarReserva(dto);
@@ -31,5 +31,14 @@ public class ReservaController {
         return service.listarReservas();
     }
 
+    public Reserva pegarReserva(Long id){
+        return service.pegarReserva(id);
+    }
+
+    @PostMapping("/cancelar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void criarReserva(@RequestParam Long id){
+        service.cancelarReserva(id);
+    }
 
 }

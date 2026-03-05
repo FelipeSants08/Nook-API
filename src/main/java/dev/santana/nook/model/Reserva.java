@@ -43,7 +43,7 @@ public class Reserva {
         this.status = StatusReserva.ATIVA;
     }
 
-    public Boolean dataCorreta(LocalDateTime dataInicio, LocalDateTime dataFim){
-        return dataInicio.isBefore(dataFim);
+    public void cancelarReserva(){
+        this.status = StatusReserva.CANCELADA;
     }
 }

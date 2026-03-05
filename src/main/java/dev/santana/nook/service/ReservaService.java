@@ -41,6 +41,17 @@ public class ReservaService {
 
     }
 
+    @Transactional
+    public void cancelarReserva(Long id){
+        Reserva reserva = pegarReserva(id);
+        reserva.cancelarReserva();
+    }
+
+    public Reserva pegarReserva(Long id){
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
+    }
+
     public List<Reserva> listarReservas(){
         return repository.findAll();
     }

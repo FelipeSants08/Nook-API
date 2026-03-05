@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sala")
+@RequestMapping("/api/v1/sala")
 public class SalaController {
 
     private final SalaService salaService;
